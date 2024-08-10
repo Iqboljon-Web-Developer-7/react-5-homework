@@ -4,18 +4,24 @@ import React, { useState, useEffect } from "react";
 const Product = ({ productId }) => {
   const [product, setProduct] = useState([]);
   useEffect(() => {
+    console.log(1);
+
     fetchProduct(`https://dummyjson.com/products/${productId}`);
-  }, []);
+  }, [product]);
 
   const fetchProduct = async (api) => {
     await axios.get(api).then((data) => setProduct(data.data));
   };
 
-  console.log(product);
   return (
     <section className="wrapper">
       <div className="max-w-2xl mx-auto border p-4 hover:shadow-md duration-200 rounded-lg bg-slate-300 cursor-pointer">
         <h1>{product.title}</h1>
+        <img
+          src={product.images && product.images[0]}
+          className="max-h-96 w-fit mx-auto"
+          alt=""
+        />
         <div className="flex justify-between">
           {" "}
           <p className="text-red-600">Price: {product.price}$</p>

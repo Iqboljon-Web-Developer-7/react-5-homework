@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { RiMenu5Line } from "react-icons/ri";
 import { IoIosSunny } from "react-icons/io";
 import { MdOutlineDarkMode } from "react-icons/md";
 
-const Header = ({ setIsProducts }) => {
+const Header = ({ setIsProducts, setScrollTop }) => {
   const [theme, setTheme] = useState("light");
+  const [isHeaderFixed, setIsHeaderFixed] = useState(false);
 
   useEffect(() => {
     if (theme === "light") {
@@ -14,13 +15,31 @@ const Header = ({ setIsProducts }) => {
     }
   }, [theme]);
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScroll = () => {
+    window.scrollY > 110 && setIsHeaderFixed(true);
+    window.scrollY < 110 && setIsHeaderFixed(false);
+  };
+
   const themeSwitcher = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
-    <header className="header__container bg-[#F8F8F8] dark:bg-slate-800 dark:text-slate-100 duration-200">
-      <div className="header wrapper flex justify-between items-center py-5">
+    <header
+      className={`header__container bg-[#F8F8F8] dark:bg-slate-800 dark:text-slate-100 ${
+        isHeaderFixed && "h-[4.6rem]"
+      } `}
+    >
+      <div
+        className={`header wrapper flex justify-between items-center py-5 h-[4.6rem] duration-200 z-10 ${
+          isHeaderFixed &&
+          "fixed max-w-[initial] animate-fadein shadow-md bg-[#F8F8F866] dark:bg-[#00000066] backdrop-blur-sm"
+        } inset-[0_0_auto_0]`}
+      >
         <h1
           onClick={() => setIsProducts(true)}
           className="header__heading cursor-pointer text-3xl border-b-2 border-b-transparent hover:border-b-orange-400 leading-7"
