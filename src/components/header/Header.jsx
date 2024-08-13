@@ -13,7 +13,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    setTheme(JSON.parse(localStorage.getItem("theme")));
+    setTheme(JSON.parse(localStorage.getItem("theme")) || "light");
     return () => window.addEventListener("scroll", handleScroll);
   }, []);
 
@@ -28,6 +28,7 @@ const Header = () => {
     } else {
       document.body.classList.add("dark");
     }
+    console.log(1);
   }, [theme]);
 
   const handleScroll = () => {
