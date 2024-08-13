@@ -2,8 +2,9 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import Filter from "../filter/Filter";
+import { useNavigate } from "react-router-dom";
 
-const Products = ({ switchProduct, setProductId }) => {
+const Products = () => {
   const [products, setProducts] = useState([]);
   const [productsList, setProductsList] = useState([]);
   const [productsTotal, setProductsTotal] = useState(0);
@@ -12,6 +13,12 @@ const Products = ({ switchProduct, setProductId }) => {
   const [params, setParams] = useState("");
   let API__URL = "https://dummyjson.com/products/";
   let limit = 8;
+
+  const navigate = useNavigate();
+
+  const handleLink = (path) => {
+    navigate(path);
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -39,7 +46,7 @@ const Products = ({ switchProduct, setProductId }) => {
         return (
           <div
             onClick={() => {
-              setProductId(item.id);
+              handleLink(`/product/${item.id}`);
               switchProduct(false);
             }}
             key={item.id}

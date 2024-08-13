@@ -2,10 +2,16 @@ import React, { useState, useEffect, useRef } from "react";
 import { RiMenu5Line } from "react-icons/ri";
 import { IoIosSunny } from "react-icons/io";
 import { MdOutlineDarkMode } from "react-icons/md";
+import { NavLink, useNavigate } from "react-router-dom";
 
-const Header = ({ setIsProducts, setScrollTop }) => {
+const Header = () => {
   const [theme, setTheme] = useState("light");
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
+
+  const navigate = useNavigate();
+  const navigateHandler = (path) => {
+    navigate(path);
+  };
 
   useEffect(() => {
     if (theme === "light") {
@@ -41,16 +47,16 @@ const Header = ({ setIsProducts, setScrollTop }) => {
         } inset-[0_0_auto_0]`}
       >
         <h1
-          onClick={() => setIsProducts(true)}
+          onClick={() => navigateHandler("/")}
           className="header__heading cursor-pointer text-3xl border-b-2 border-b-transparent hover:border-b-orange-400 leading-7"
         >
           clickhouse
         </h1>
         <nav className="header__nav hidden lg:flex gap-5 font-light">
-          <a href="#">Каталог</a>
-          <a href="#">Доставка</a>
-          <a href="#">Условия</a>
-          <a href="#">Контакты</a>
+          <NavLink to={"/"}>Главная</NavLink>
+          <NavLink to={"/delivery"}>Доставка</NavLink>
+          <NavLink to={"*"}>Условия</NavLink>
+          <NavLink to={"/contact"}>Контакты</NavLink>
         </nav>
         <div className="header__contact flex items-center justify-center gap-6 ">
           <div className="hidden lg:flex items-end flex-col">

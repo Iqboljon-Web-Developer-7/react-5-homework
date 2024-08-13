@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-const Product = ({ productId }) => {
+const Product = () => {
+  const productId = Number(+useLocation().pathname.match(/\d/g).join());
+
   const [product, setProduct] = useState([]);
   useEffect(() => {
-    console.log(1);
-
     fetchProduct(`https://dummyjson.com/products/${productId}`);
   }, [product]);
 
@@ -14,7 +15,7 @@ const Product = ({ productId }) => {
   };
 
   return (
-    <section className="wrapper">
+    <section className="wrapper mt-8">
       <div className="max-w-2xl mx-auto border p-4 hover:shadow-md duration-200 rounded-lg bg-slate-300 cursor-pointer">
         <h1>{product.title}</h1>
         <img
