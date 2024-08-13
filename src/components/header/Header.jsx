@@ -4,9 +4,18 @@ import { IoIosSunny } from "react-icons/io";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";
 
+import "./Header.scss";
+import MobileNav from "../mobileNav/MobileNav";
+
 const Header = () => {
   const [theme, setTheme] = useState("light");
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setTheme(JSON.parse(localStorage.getItem("theme")));
+    return () => window.addEventListener("scroll", handleScroll);
+  }, []);
 
   const navigate = useNavigate();
   const navigateHandler = (path) => {
@@ -21,10 +30,6 @@ const Header = () => {
     }
   }, [theme]);
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-  }, []);
-
   const handleScroll = () => {
     window.scrollY > 110 && setIsHeaderFixed(true);
     window.scrollY < 110 && setIsHeaderFixed(false);
@@ -32,6 +37,10 @@ const Header = () => {
 
   const themeSwitcher = () => {
     setTheme(theme === "light" ? "dark" : "light");
+    localStorage.setItem(
+      "theme",
+      JSON.stringify(theme === "light" ? "dark" : "light")
+    );
   };
 
   return (
@@ -40,6 +49,7 @@ const Header = () => {
         isHeaderFixed && "h-[4.6rem]"
       } `}
     >
+      <MobileNav isOpen={isOpen} setIsOpen={setIsOpen} />
       <div
         className={`header wrapper flex justify-between items-center py-5 h-[4.6rem] duration-200 z-10 ${
           isHeaderFixed &&
@@ -53,7 +63,7 @@ const Header = () => {
           clickhouse
         </h1>
         <nav className="header__nav hidden lg:flex gap-5 font-light">
-          <NavLink to={"/"}>Главная</NavLink>
+          <NavLink to={"/category"}>Каталог</NavLink>
           <NavLink to={"/delivery"}>Доставка</NavLink>
           <NavLink to={"*"}>Условия</NavLink>
           <NavLink to={"/contact"}>Контакты</NavLink>
@@ -79,7 +89,10 @@ const Header = () => {
               className={`${theme == "dark" && "hidden"}`}
             />
           </div>
-          <RiMenu5Line className="lg:hidden text-3xl" />
+          <RiMenu5Line
+            className="lg:hidden text-3xl"
+            onClick={() => setIsOpen((prev) => !prev)}
+          />
         </div>
       </div>
     </header>

@@ -80,9 +80,6 @@ const Search = () => {
                 setIsSearching(false);
                 setSearch("");
                 navigateHandler(`/product/${item.id}`);
-                window.document.body.clientWidth > 1024
-                  ? window.scroll(0, 640)
-                  : window.scroll(0, 1200);
               }}
               key={item.id}
               className="text-sm w-full bg-gray-200 dark:bg-blue-950 dark:text-slate-100 rounded-full p-1 px-3"

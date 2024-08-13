@@ -1,11 +1,11 @@
 import React from "react";
 
-import deliveryPerson from "../../assets/delivery/delivery-guy.png";
-import deliveryCar from "../../assets/delivery/delivery-car.png";
+import deliveryPerson from "../../assets/delivery/delivery-guy1-1.png";
+import deliveryCar from "../../assets/delivery/delivery-car1.png";
 
 const Delivery = () => {
   return (
-    <section className="delivery wrapper">
+    <section className="delivery wrapper dark:text-slate-200">
       <div className="delivery__hero grid md:grid-cols-[3fr_4fr]">
         <div className="delivery__hero--info font-light">
           <h2 className="delivery__hero--heading mt-6 text-[2.25rem] font-bold">

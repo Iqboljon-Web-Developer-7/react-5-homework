@@ -4,11 +4,11 @@ import contactImg1 from "../../assets/contact/img-wiki.svg";
 import contactImg2 from "../../assets/contact/img-facebook.svg";
 import contactImg3 from "../../assets/contact/img-google-plus.svg";
 
-import contactImg from "../../assets/contact/contact.png";
+import contactImg from "../../assets/contact/contact-1.png";
 
 const Contact = () => {
   return (
-    <section className="contact wrapper mt-8 grid lg:grid-cols-[8fr_4fr]">
+    <section className="contact wrapper mt-8 grid lg:grid-cols-[8fr_4fr] dark:text-slate-200">
       <div className="contact__main">
         <h3 className="text-xl text-[2.25rem] font-bold text-center md:text-start mb-12">
           Контакты

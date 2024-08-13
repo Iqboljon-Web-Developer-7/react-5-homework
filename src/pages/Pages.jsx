@@ -7,6 +7,7 @@ import Delivery from "../components/delivery/Delivery";
 import Contact from "../components/contact/Contact";
 import NotFound from "../components/404/404";
 import Product from "../components/product/Product";
+import Category from "../components/category/Category";
 
 const Pages = () => {
   return (
@@ -14,6 +15,7 @@ const Pages = () => {
       <Header />
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/category" element={<Category />} />
         <Route path="/delivery" element={<Delivery />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/product/*" element={<Product />} />
