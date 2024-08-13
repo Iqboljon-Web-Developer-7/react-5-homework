@@ -5,6 +5,7 @@ import { MdOutlineDarkMode } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import "./Header.scss";
+
 import MobileNav from "../mobileNav/MobileNav";
 
 const Header = () => {
