@@ -16,7 +16,7 @@ const Pages = () => {
         <Route path="/" element={<App />} />
         <Route path="/delivery" element={<Delivery />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/product*" element={<Product />} />
+        <Route path="/product/*" element={<Product />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

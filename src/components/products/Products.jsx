@@ -47,7 +47,6 @@ const Products = () => {
           <div
             onClick={() => {
               handleLink(`/product/${item.id}`);
-              switchProduct(false);
             }}
             key={item.id}
             className="product border p-2 hover:border-slate-700 dark:border-slate-400 dark:hover:border-lime-400 duration-300 dark:text-slate-200 cursor-pointer hover:shadow-md"

@@ -1,10 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Search = ({ setIsProducts, setProductId }) => {
+const Search = () => {
   const [search, setSearch] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [searchData, setSearchData] = useState([]);
+
+  const navigate = useNavigate();
+
+  function navigateHandler(path) {
+    navigate(path);
+  }
 
   useEffect(() => {
     axios
@@ -70,10 +77,9 @@ const Search = ({ setIsProducts, setProductId }) => {
           {searchData?.map((item) => (
             <p
               onClick={() => {
-                setProductId(item.id);
-                setIsProducts(false);
                 setIsSearching(false);
                 setSearch("");
+                navigateHandler(`/product/${item.id}`);
                 window.document.body.clientWidth > 1024
                   ? window.scroll(0, 640)
                   : window.scroll(0, 1200);

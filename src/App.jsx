@@ -12,11 +12,7 @@ const App = () => {
     <main className="font-jest">
       <Search setIsProducts={setIsProducts} setProductId={setProductId} />
       <Hero />
-      <Products
-        // setProductId={setProductId}
-        products={isProducts}
-        switchProduct={setIsProducts}
-      />
+      <Products products={isProducts} switchProduct={setIsProducts} />
     </main>
   );
 };
