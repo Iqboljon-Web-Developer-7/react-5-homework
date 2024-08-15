@@ -23,5 +23,8 @@ module.exports = {
       jest: '"Jost", sans-serif',
     },
   },
-  plugins: [],
+  daisyui: {
+    theme: false,
+  },
+  plugins: [require("daisyui")],
 };

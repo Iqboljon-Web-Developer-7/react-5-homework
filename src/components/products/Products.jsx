@@ -141,7 +141,7 @@ const Products = () => {
           console.log(products.length);
           console.log(productsTotal);
         }}
-        className={`btn py-3 px-6 mx-auto bg-yellow-300 rounded-lg items-center justify-center w-fit hover:shadow-orange-400 shadow-md transition-all duration-300 ${
+        className={`py-3 px-6 mx-auto bg-yellow-300 rounded-lg items-center justify-center w-fit hover:shadow-orange-400 shadow-md transition-all duration-300 ${
           products.length < productsTotal ? "flex" : "hidden"
         }`}
       >

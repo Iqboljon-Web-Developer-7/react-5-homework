@@ -4,7 +4,7 @@ import { LuDot } from "react-icons/lu";
 
 const Hero = () => {
   return (
-    <section className="wrapper hero mt-14 lg:mt-24 pb-10 grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-3 dark:text-slate-200 duration-200">
+    <section className="wrapper mt-14 lg:mt-24 pb-10 grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-3 dark:text-slate-200 duration-200">
       <div className="hero__info py-12 pl-11 pr-10 border rounded-xl h-fit">
         <h2 className="hero__inf--heading text-5xl leading-10 font-bold">
           Мебель на любой вкус!

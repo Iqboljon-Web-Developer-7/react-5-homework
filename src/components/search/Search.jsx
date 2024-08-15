@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
 
 const Search = () => {
   const [search, setSearch] = useState("");
@@ -22,10 +23,12 @@ const Search = () => {
   return (
     <section className="wrapper mt-8 flex flex-col gap-5 md:flex-row md:justify-between items-center">
       <h2
-        className="text-xl text-lime-600
+        className="text-3xl text-lime-600 cursor-pointer
       "
       >
-        Search Products
+        <Link to={"/profile"}>
+          <FaUserCircle />
+        </Link>
       </h2>
 
       <form className="w-11/12 md:w-2/4 relative">
