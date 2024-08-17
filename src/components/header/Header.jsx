@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, memo } from "react";
 import { RiMenu5Line } from "react-icons/ri";
 import { IoIosSunny } from "react-icons/io";
 import { MdOutlineDarkMode } from "react-icons/md";
@@ -29,7 +29,6 @@ const Header = () => {
     } else {
       document.body.classList.add("dark");
     }
-    console.log(1);
   }, [theme]);
 
   const handleScroll = () => {
@@ -101,4 +100,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

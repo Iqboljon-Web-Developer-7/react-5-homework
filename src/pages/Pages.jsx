@@ -12,6 +12,7 @@ import Profile from "../components/profile/Profile";
 import ProfilePage from "../components/profilePage/ProfilePage";
 import Users from "../components/users/Users";
 import User from "../components/user/User";
+import Protect from "../components/protect/Protect";
 
 const Pages = () => {
   return (
@@ -24,9 +25,11 @@ const Pages = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="profilePage" element={<ProfilePage />}>
-          <Route path="users" element={<Users />} />
-          <Route path="user" element={<User />} />
+        <Route path="/" element={<Protect />}>
+          <Route path="profilePage" element={<ProfilePage />}>
+            <Route path="users" element={<Users />} />
+            <Route path="user" element={<User />} />
+          </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

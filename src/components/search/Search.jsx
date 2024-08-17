@@ -1,7 +1,7 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
+import axiosFun from "../../API/axios";
 
 const Search = () => {
   const [search, setSearch] = useState("");
@@ -15,8 +15,8 @@ const Search = () => {
   }
 
   useEffect(() => {
-    axios
-      .get("https://dummyjson.com/products/search?q=" + search)
+    axiosFun
+      .get("/search?q=" + search)
       .then((data) => setSearchData(data.data.products));
   }, [search]);
 
@@ -96,4 +96,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default memo(Search);

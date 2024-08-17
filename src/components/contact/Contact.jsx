@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import contactImg1 from "../../assets/contact/img-wiki.svg";
 import contactImg2 from "../../assets/contact/img-facebook.svg";
@@ -49,4 +49,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default memo(Contact);

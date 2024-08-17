@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 const Profile = () => {
@@ -54,4 +54,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default memo(Profile);

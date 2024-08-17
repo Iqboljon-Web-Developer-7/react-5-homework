@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import deliveryPerson from "../../assets/delivery/delivery-guy1-1.png";
 import deliveryCar from "../../assets/delivery/delivery-car1.png";
@@ -105,4 +105,4 @@ const Delivery = () => {
   );
 };
 
-export default Delivery;
+export default memo(Delivery);

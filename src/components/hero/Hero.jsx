@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import DemoCarousel from "../carousel/Carousel";
 import { LuDot } from "react-icons/lu";
 
@@ -26,4 +26,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default memo(Hero);

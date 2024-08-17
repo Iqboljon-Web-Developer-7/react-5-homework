@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { memo, useEffect, useState } from "react";
+import axiosFun from "../../API/axios";
 
-const Filter = ({ API__URL, filterProducts }) => {
+const Filter = ({ filterProducts }) => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    axios
-      .get(`${API__URL}/category-list`)
-      .then((data) => setCategories(data.data));
+    axiosFun.get(`/category-list`).then((data) => setCategories(data.data));
   }, []);
 
   return (
@@ -16,7 +14,7 @@ const Filter = ({ API__URL, filterProducts }) => {
     >
       <option value="">ALL</option>
       {categories?.map((item, idx) => (
-        <option value={`/category/${item}`} key={item}>
+        <option value={`/category/${item}`} key={idx}>
           {item}
         </option>
       ))}
@@ -24,4 +22,4 @@ const Filter = ({ API__URL, filterProducts }) => {
   );
 };
 
-export default Filter;
+export default memo(Filter);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 const ProfilePage = () => {
@@ -21,4 +21,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default memo(ProfilePage);

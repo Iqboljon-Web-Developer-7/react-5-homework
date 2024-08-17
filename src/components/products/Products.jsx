@@ -1,18 +1,17 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import Filter from "../filter/Filter";
 import { useNavigate } from "react-router-dom";
+import axiosFun from "../../API/axios";
 
-const Products = () => {
+const Products = ({ limit }) => {
   const [products, setProducts] = useState([]);
   const [productsList, setProductsList] = useState([]);
   const [productsTotal, setProductsTotal] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [offset, setOffset] = useState(1);
   const [params, setParams] = useState("");
-  let API__URL = "https://dummyjson.com/products/";
-  let limit = 8;
+  limit = limit || 8;
 
   const navigate = useNavigate();
 
@@ -22,8 +21,8 @@ const Products = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    axios
-      .get(`${API__URL}${params}`, {
+    axiosFun
+      .get(params, {
         params: {
           limit: limit * offset,
         },
@@ -31,6 +30,7 @@ const Products = () => {
       .then((data) => {
         setProducts(data.data.products);
         setProductsTotal(data.data.total);
+        console.log(data);
       })
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
@@ -77,7 +77,7 @@ const Products = () => {
     <section className="wrapper products mt-10">
       <div className="flex flex-col gap-5 md:flex-row md:justify-between items-center">
         <h1 className="products__heading text-3xl font-bold flex flex-col text-center md:flex-row items-end gap-2 dark:text-slate-200">
-          Товары в наличии{" "}
+          Товары в наличии
           <a
             href="#"
             className="text-sm font-light flex items-center justify-center gap-2 leading-6 mx-auto"
@@ -86,13 +86,13 @@ const Products = () => {
           </a>
         </h1>
 
-        <Filter API__URL={API__URL} filterProducts={filterProducts} />
+        <Filter filterProducts={filterProducts} />
       </div>
 
       <div className="products__container pb-10 grid gap-4 mt-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {productsList}
         {isLoading &&
-          new Array(8).fill().map((_, idx) => (
+          new Array(limit).fill().map((_, idx) => (
             <div className="loaders" key={idx}>
               <div
                 role="status"
@@ -151,4 +151,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default memo(Products);

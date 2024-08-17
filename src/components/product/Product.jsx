@@ -1,62 +1,22 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import axiosFun from "../../API/axios";
+import Products from "../products/Products";
 
 const Product = () => {
   const productId = useParams().id;
   const [category, setCategory] = useState("");
   const [imgIdx, setImgIdx] = useState(0);
   const [product, setProduct] = useState([]);
-  const [productsList, setProductsList] = useState([]);
-
-  let API__URL = "https://dummyjson.com/products/";
 
   useEffect(() => {
-    fetchProduct(`${API__URL}${productId}`);
-  }, []);
+    fetchProduct(productId);
+  }, [productId]);
 
-  const fetchProduct = async (api) => {
-    await axios.get(api).then((data) => setProduct(data.data));
+  const fetchProduct = async (productId) => {
+    await axiosFun.get(`/${productId}`).then((data) => setProduct(data.data));
     setCategory(product.category);
   };
-
-  useEffect(() => {
-    axios.get(`${API__URL}category/${product.category}`).then((data) => {
-      console.log(data.data.products);
-      console.log(productsList);
-
-      data.data.products.length > 0
-        ? setProductsList(
-            data.data.products?.map((item) => (
-              <div
-                onClick={() => {
-                  handleLink(`/product/${item.id}`);
-                }}
-                key={item.id}
-                className="product shrink-0 w-[30%] border p-2 hover:border-slate-700 dark:border-slate-400 dark:hover:border-lime-400 duration-300 dark:text-slate-200 cursor-pointer hover:shadow-md"
-              >
-                <div className="product__image flex items-center justify-center">
-                  <img
-                    src={item.images[0]}
-                    alt="something"
-                    className="w-fit max-h-56"
-                  />
-                </div>
-                <div className="product__info mt-4 px-2">
-                  <div className="product__info--name-price flex justify-between items-center">
-                    <h3 className="product__name">{item.title}</h3>
-                    <p className="product__price text-red-600">{item.price}$</p>
-                  </div>
-                  <div className="product__description line-clamp-4 text-sm mt-2 text-slate-700 dark:text-slate-300">
-                    <p>{item.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))
-          )
-        : null;
-    });
-  }, [product]);
 
   return (
     <div>
@@ -96,12 +56,9 @@ const Product = () => {
           <p className="text-slate-600">{product.description}</p>
         </div>
       </section>
-
-      <div className="products wrapper pb-10 gap-4 mt-10 flex overflow-x-auto">
-        {productsList}
-      </div>
+      <Products limit={4} />
     </div>
   );
 };
 
-export default Product;
+export default memo(Product);
