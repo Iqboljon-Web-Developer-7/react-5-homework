@@ -15,7 +15,7 @@ const Product = () => {
 
   const fetchProduct = async (productId) => {
     await axiosFun.get(`/${productId}`).then((data) => setProduct(data.data));
-    setCategory(product.category);
+    // setCategory(product.category);
   };
 
   return (
